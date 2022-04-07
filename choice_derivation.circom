@@ -16,6 +16,9 @@ template ChoiceDerivation() {
     pubkeyDerivation.pubKey[0] === publicKey[0];
     pubkeyDerivation.pubKey[1] === publicKey[1];
 
+    log(pubkeyDerivation.pubKey[0]);
+    log(pubkeyDerivation.pubKey[1]);
+
     // Hash together private key and block hash,
     // value is used externally to choose a candidate.
     component poseidon = Poseidon(3);
@@ -24,6 +27,7 @@ template ChoiceDerivation() {
     poseidon.inputs[2] <== lastSignupBlockHash[1];
 
     hash <== poseidon.out;
+    log(hash);
 }
 
 component main {public [publicKey, lastSignupBlockHash]} = ChoiceDerivation();
